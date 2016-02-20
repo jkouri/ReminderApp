@@ -28,7 +28,7 @@ class DataStorage: NSObject {
     }
     
     //called from table view
-    //later sub class NS object and create a reminder sub class and have array of reminders
+   // have array of reminderItems
     func getReminder() -> [String]{
         return ["hi", "milk"];
     }
