@@ -39,11 +39,10 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
     //MARK: Actions
     @IBAction func addReminder(sender: AnyObject){
         let x = ReminderItem(name: itemname.text!)
-        itemname.text=""
         DataStorage.sharedInstance.addReminder(x!)
-        
         NSUserDefaults.standardUserDefaults().setObject(reminderitem, forKey: "list")
-        
+        itemname.text=""
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

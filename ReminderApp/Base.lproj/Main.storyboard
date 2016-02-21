@@ -34,7 +34,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reminderID" id="nnX-69-Ii9">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nnX-69-Ii9" id="3CR-sL-Yxv">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -74,7 +74,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfc-I6-RXO">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfc-I6-RXO">
                                 <rect key="frame" x="0.0" y="102" width="600" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -91,8 +91,7 @@
                     <navigationItem key="navigationItem" title="Item Description" id="VNC-qy-o41">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="BEc-KL-6z2">
                             <connections>
-                                <action selector="addReminder:" destination="ehr-u1-GKk" id="XA1-eN-mhb"/>
-                                <segue destination="5Jn-bY-Uzz" kind="showDetail" id="eZ9-Ax-ZjM"/>
+                                <action selector="addReminder:" destination="ehr-u1-GKk" id="q5h-MV-LqI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -106,7 +105,4 @@
             <point key="canvasLocation" x="1295" y="-133"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="eZ9-Ax-ZjM"/>
-    </inferredMetricsTieBreakers>
 </document>
