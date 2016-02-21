@@ -8,20 +8,22 @@
 
 import UIKit
 
+var reminderitem = [ReminderItem]()
+
 class AddReminderVC: UIViewController, UITextFieldDelegate {
  //connect button add reminder
  //communictae with same datastroage of tableview controller
 
     
     //MARK:Properties
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet var itemname: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Handle the text field’s user input through delegate callbacks.
-        descriptionTextField.delegate = self
+        itemname.delegate = self
     }
     
     
@@ -32,15 +34,20 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
         return true
     }
    
-    func textFieldDidEndEditing(textField: UITextField) {
-        
-    }
+
     
     //MARK: Actions
     @IBAction func addReminder(sender: AnyObject){
-   //     var reminder = ReminderItem();
-     //   reminder.descriptionItem = descriptionTextField;
+        let x = ReminderItem(name: itemname.text!)
+        itemname.text=""
+        DataStorage.sharedInstance.addReminder(x!)
         
+        NSUserDefaults.standardUserDefaults().setObject(reminderitem, forKey: "list")
+        
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 }

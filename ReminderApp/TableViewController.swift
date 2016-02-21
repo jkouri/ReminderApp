@@ -8,17 +8,26 @@
 
 import UIKit
 
+
 class TableViewController: UITableViewController {
 
+    
+    @IBOutlet var tableview: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tableView.delegate = self
+    }
+/*        if NSUserDefaults.standardUserDefaults().objectForKey("list") != nil {
+            reminderlist = NSUserDefaults.standardUserDefaults().objectForKey("list") as! [ReminderItem] */
+        
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -41,13 +50,27 @@ class TableViewController: UITableViewController {
   
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reminderID", forIndexPath: indexPath)
-
-        cell.textLabel?.text = DataStorage.sharedInstance.getReminder()[indexPath.row]
+        let list = DataStorage.sharedInstance.reminderlist
+        cell.textLabel?.text = list[indexPath.row].name
 
         return cell
     }
   
 
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            DataStorage.sharedInstance.reminderlist.removeAtIndex(indexPath.row)
+            NSUserDefaults.standardUserDefaults().setObject(DataStorage.sharedInstance.reminderlist, forKey: "list")
+            tableView.reloadData()
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+    
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

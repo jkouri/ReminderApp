@@ -9,6 +9,7 @@
 import UIKit
 
 class DataStorage: NSObject {
+    var reminderlist = [ReminderItem]()
     
     //swift singleton class
     //accessible to all view controllers
@@ -23,14 +24,15 @@ class DataStorage: NSObject {
     
     
     
-    func addReminder(){
+    func addReminder(item: ReminderItem){
+        reminderlist.append(item)
         
     }
     
     //called from table view
    // have array of reminderItems
-    func getReminder() -> [String]{
-        return ["hi", "milk"];
+    func getReminder() -> [ReminderItem] {
+        return reminderlist;
     }
 
     

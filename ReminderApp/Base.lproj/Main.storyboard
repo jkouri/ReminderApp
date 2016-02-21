@@ -34,7 +34,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reminderID" id="nnX-69-Ii9">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nnX-69-Ii9" id="3CR-sL-Yxv">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -54,6 +54,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableview" destination="5mP-qU-mMj" id="J9o-oo-3KT"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="esh-sM-Waa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -89,12 +92,13 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="BEc-KL-6z2">
                             <connections>
                                 <action selector="addReminder:" destination="ehr-u1-GKk" id="XA1-eN-mhb"/>
+                                <segue destination="5Jn-bY-Uzz" kind="showDetail" id="eZ9-Ax-ZjM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="DescriptionTextField" destination="cfc-I6-RXO" id="cW0-5I-Yul"/>
+                        <outlet property="itemname" destination="cfc-I6-RXO" id="m6X-Bk-gZ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6y-DC-0q9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -102,4 +106,7 @@
             <point key="canvasLocation" x="1295" y="-133"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="eZ9-Ax-ZjM"/>
+    </inferredMetricsTieBreakers>
 </document>
