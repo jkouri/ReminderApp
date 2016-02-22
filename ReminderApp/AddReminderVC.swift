@@ -17,7 +17,7 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
     //MARK:Properties
     @IBOutlet var itemname: UITextField!
     @IBOutlet weak var date: UIDatePicker!
-    @IBOutlet weak var time: UIDatePicker!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +39,7 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
     //MARK: Actions
     @IBAction func addReminder(sender: AnyObject){
         let d = NSDateFormatter.localizedStringFromDate(date.date, dateStyle: NSDateFormatterStyle.FullStyle, timeStyle:NSDateFormatterStyle.ShortStyle)
-        let t = NSDateFormatter.localizedStringFromDate(time.date, dateStyle: NSDateFormatterStyle.FullStyle, timeStyle:NSDateFormatterStyle.ShortStyle)
-        let x = ReminderItem(name: itemname.text!,date: d, time: t)
+        let x = ReminderItem(name: itemname.text!,date: d)
         DataStorage.sharedInstance.addReminder(x!)
         NSUserDefaults.standardUserDefaults().setObject(reminderitem, forKey: "list")
         itemname.text=""

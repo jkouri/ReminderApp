@@ -16,15 +16,13 @@ class ReminderItem: NSObject {
     //MARK: Properties
     var name: String
     var date: String
-    var time: String
     //var alert: Bool
     
     // MARK: Initialization
     
-    init?(name: String, date: String, time: String) {
+    init?(name: String, date: String) {
         self.name = name
         self.date = date
-        self.time = time
     }
     //, date: NSDate, time: NSTimeInterval, alert:Bool) {
               //  self.date = date
