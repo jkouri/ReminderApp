@@ -24,6 +24,7 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
         
         // Handle the text field’s user input through delegate callbacks.
         itemname.delegate = self
+        date.minimumDate = NSDate()
     }
     
     
