@@ -18,7 +18,6 @@ class DataStorage: NSObject {
     
     override init() {
         super.init();
-        print("AAA"); //only getting initialized once
         
     }
     

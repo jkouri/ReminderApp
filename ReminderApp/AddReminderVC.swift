@@ -17,16 +17,37 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
     //MARK:Properties
     @IBOutlet var itemname: UITextField!
     @IBOutlet weak var date: UIDatePicker!
+    @IBOutlet weak var desc: UITextView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Handle the text field’s user input through delegate callbacks.
         itemname.delegate = self
         date.minimumDate = NSDate()
+        self.desc.layer.borderWidth = 2.0
+        self.desc.layer.borderColor = UIColor.lightGrayColor().CGColor
+     //   self.desc.delegate = self.desc
+        self.desc.text = "Item Description"
+        self.desc.textColor = UIColor.lightGrayColor()
+        
+       
+
     }
     
+    func textViewDidBeginEditing(textView: UITextView){
+        if textView.textColor == UIColor.lightGrayColor(){
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView){
+        if textView.text.isEmpty {
+            textView.text = "Item Desciption"
+            textView.textColor = UIColor.lightGrayColor()
+        }
+    }
     
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -48,9 +69,8 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
         let cancel = UIAlertAction(title: "Dismiss", style: .Cancel, handler: dismissAlert)
         
         alertController.addAction(cancel)
-        
         let d = date.date
-        let x = ReminderItem(name: itemname.text!,date: d)
+        let x = ReminderItem(name: itemname.text!,date: d, desc: desc.text!)
         DataStorage.sharedInstance.addReminder(x!)
         NSUserDefaults.standardUserDefaults().setObject(reminderitem, forKey: "list")
         itemname.text=""
