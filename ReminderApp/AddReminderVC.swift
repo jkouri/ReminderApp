@@ -34,16 +34,28 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
         return true
     }
    
-
+    
+    func dismissAlert(alert: UIAlertAction){
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     //MARK: Actions
     @IBAction func addReminder(sender: AnyObject){
+        let alertController = UIAlertController(title: "Reminder:", message: itemname.text!, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let cancel = UIAlertAction(title: "Dismiss", style: .Cancel, handler: dismissAlert)
+        
+        alertController.addAction(cancel)
+        
         let d = date.date
         let x = ReminderItem(name: itemname.text!,date: d)
         DataStorage.sharedInstance.addReminder(x!)
         NSUserDefaults.standardUserDefaults().setObject(reminderitem, forKey: "list")
         itemname.text=""
         self.navigationController?.popToRootViewControllerAnimated(true)
+        
+        UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(alertController, animated: true, completion: nil)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
