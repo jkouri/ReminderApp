@@ -10,7 +10,7 @@ import UIKit
 
 var reminderitem = [ReminderItem]()
 
-class AddReminderVC: UIViewController, UITextFieldDelegate {
+class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
  //connect button add reminder
  //communictae with same datastroage of tableview controller
     
@@ -27,13 +27,14 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
         date.minimumDate = NSDate()
         self.desc.layer.borderWidth = 2.0
         self.desc.layer.borderColor = UIColor.lightGrayColor().CGColor
-     //   self.desc.delegate = self.desc
+        self.desc.delegate = self
         self.desc.text = "Item Description"
         self.desc.textColor = UIColor.lightGrayColor()
         
        
 
     }
+    // MARK: UITextViewDelegate
     
     func textViewDidBeginEditing(textView: UITextView){
         if textView.textColor == UIColor.lightGrayColor(){
@@ -48,8 +49,8 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
             textView.textColor = UIColor.lightGrayColor()
         }
     }
-    
     // MARK: UITextFieldDelegate
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         //Hide the keyboard
         textField.resignFirstResponder()

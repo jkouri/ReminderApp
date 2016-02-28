@@ -13,6 +13,7 @@ class TableViewController: UITableViewController {
 
     
     @IBOutlet var tableview: UITableView!
+    var currentReminder: ReminderItem? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,9 +71,13 @@ class TableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-  /*  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        [self performSegueWithIdentifier:@"ShowDetail" sender:tableView];
-    }*/
+   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        self.currentReminder = DataStorage.sharedInstance.reminderlist[indexPath.row]
+    if(currentReminder != nil) {
+        self.performSegueWithIdentifier("AddReminder,", sender: self)
+    }
+    
+    }
 
     
   
@@ -100,14 +105,20 @@ class TableViewController: UITableViewController {
     }
     */
 
-    /*
+ 
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if (currentReminder != nil){
+        let destVC = segue.destinationViewController as! AddReminderVC
+        destVC.itemname.text = currentReminder!.name
+        destVC.date.setDate(currentReminder!.date, animated: true)
+        destVC.desc.text = currentReminder!.desc
+        }
     }
-    */
+
 
 }
