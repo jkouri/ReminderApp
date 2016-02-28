@@ -38,7 +38,7 @@ class AddReminderVC: UIViewController, UITextFieldDelegate {
     
     //MARK: Actions
     @IBAction func addReminder(sender: AnyObject){
-        let d = NSDateFormatter.localizedStringFromDate(date.date, dateStyle: NSDateFormatterStyle.FullStyle, timeStyle:NSDateFormatterStyle.ShortStyle)
+        let d = date.date
         let x = ReminderItem(name: itemname.text!,date: d)
         DataStorage.sharedInstance.addReminder(x!)
         NSUserDefaults.standardUserDefaults().setObject(reminderitem, forKey: "list")

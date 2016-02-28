@@ -52,8 +52,7 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("reminderID", forIndexPath: indexPath)
         let list = DataStorage.sharedInstance.reminderlist
         cell.textLabel?.text = list[indexPath.row].name
-        cell.detailTextLabel?.text = list[indexPath.row].date
-
+        cell.detailTextLabel?.text = NSDateFormatter.localizedStringFromDate(list[indexPath.row].date, dateStyle: NSDateFormatterStyle.FullStyle, timeStyle:NSDateFormatterStyle.ShortStyle)
         return cell
     }
   

@@ -26,7 +26,7 @@ class DataStorage: NSObject {
     
     func addReminder(item: ReminderItem){
         reminderlist.append(item)
-        reminderlist.sortInPlace({$0.date > $1.date})
+        reminderlist.sortInPlace({$0.date.compare($1.date) == NSComparisonResult.OrderedAscending})
         
     }
     
