@@ -66,7 +66,7 @@
                     <navigationItem key="navigationItem" title="Reminders" id="s0n-OD-tBZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cGX-x1-o49">
                             <connections>
-                                <segue destination="ehr-u1-GKk" kind="show" id="woc-DM-neF"/>
+                                <segue destination="ehr-u1-GKk" kind="show" identifier="AddReminder" id="woc-DM-neF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -92,32 +92,40 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfc-I6-RXO">
                                 <rect key="frame" x="0.0" y="102" width="414" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="fcC-wC-Avk"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EmQ-AP-lgC">
-                                <rect key="frame" x="47" y="140" width="320" height="216"/>
-                                <date key="date" timeIntervalSinceReferenceDate="477802053.80225098">
-                                    <!--2016-02-22 02:47:33 +0000-->
-                                </date>
-                            </datePicker>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Item Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nsO-el-Wqw">
-                                <rect key="frame" x="87" y="430" width="240" height="138"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Item Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nsO-el-Wqw">
+                                <rect key="frame" x="25" y="329" width="364" height="355"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EmQ-AP-lgC">
+                                <rect key="frame" x="47" y="140" width="320" height="181"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="181" id="JKa-B6-Tk2"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="477802053.80225098">
+                                    <!--2016-02-22 02:47:33 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="cfc-I6-RXO" secondAttribute="trailing" constant="-20" id="41F-Xj-NNL"/>
-                            <constraint firstItem="EmQ-AP-lgC" firstAttribute="centerX" secondItem="zH4-tV-F8y" secondAttribute="centerX" id="5AF-1e-zCS"/>
-                            <constraint firstItem="EmQ-AP-lgC" firstAttribute="centerX" secondItem="zH4-tV-F8y" secondAttribute="centerX" id="MzD-cH-sRQ"/>
-                            <constraint firstItem="cfc-I6-RXO" firstAttribute="leading" secondItem="zH4-tV-F8y" secondAttribute="leadingMargin" constant="-20" id="PyG-Cm-pGh"/>
-                            <constraint firstItem="nsO-el-Wqw" firstAttribute="centerY" secondItem="zH4-tV-F8y" secondAttribute="centerY" id="Vy4-LS-jhi"/>
-                            <constraint firstItem="cfc-I6-RXO" firstAttribute="top" secondItem="H6m-mQ-5YL" secondAttribute="bottom" constant="38" id="Xep-bY-GiX"/>
-                            <constraint firstItem="EmQ-AP-lgC" firstAttribute="top" secondItem="cfc-I6-RXO" secondAttribute="bottom" constant="8" id="pqI-B5-crz"/>
-                            <constraint firstItem="xAs-yQ-Swb" firstAttribute="top" secondItem="EmQ-AP-lgC" secondAttribute="bottom" constant="336" id="vVZ-G6-37Q"/>
+                            <constraint firstItem="xAs-yQ-Swb" firstAttribute="top" secondItem="nsO-el-Wqw" secondAttribute="bottom" constant="8" id="4hz-hU-TBr"/>
+                            <constraint firstItem="EmQ-AP-lgC" firstAttribute="top" secondItem="cfc-I6-RXO" secondAttribute="bottom" constant="8" id="7Pj-cs-fEm"/>
+                            <constraint firstItem="cfc-I6-RXO" firstAttribute="top" secondItem="H6m-mQ-5YL" secondAttribute="bottom" constant="38" id="E0h-f6-st5"/>
+                            <constraint firstItem="nsO-el-Wqw" firstAttribute="top" secondItem="EmQ-AP-lgC" secondAttribute="bottom" constant="8" id="KFf-Ly-xxy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cfc-I6-RXO" secondAttribute="trailing" constant="-20" id="KkO-QH-Rf9"/>
+                            <constraint firstItem="nsO-el-Wqw" firstAttribute="leading" secondItem="zH4-tV-F8y" secondAttribute="leadingMargin" constant="5" id="Rsl-dH-vi0"/>
+                            <constraint firstItem="cfc-I6-RXO" firstAttribute="leading" secondItem="zH4-tV-F8y" secondAttribute="leadingMargin" constant="-20" id="gHE-jG-E9h"/>
+                            <constraint firstItem="EmQ-AP-lgC" firstAttribute="leading" secondItem="zH4-tV-F8y" secondAttribute="leadingMargin" constant="27" id="ngR-aq-JXH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nsO-el-Wqw" secondAttribute="trailing" constant="5" id="pMd-Pz-tYu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EmQ-AP-lgC" secondAttribute="trailing" constant="27" id="qM0-BO-FPk"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -138,7 +146,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6y-DC-0q9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1294" y="-134"/>
+            <point key="canvasLocation" x="1277" y="-60"/>
         </scene>
     </scenes>
 </document>
