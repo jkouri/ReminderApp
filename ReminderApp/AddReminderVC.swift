@@ -10,14 +10,21 @@ import UIKit
 
 var reminderitem = [ReminderItem]()
 
+//var currentDate: NSDate = currentDate
+//var currentDesc: String = ""
+
 class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
  //connect button add reminder
  //communictae with same datastroage of tableview controller
+
     
     //MARK:Properties
     @IBOutlet var itemname: UITextField!
     @IBOutlet weak var date: UIDatePicker!
     @IBOutlet weak var desc: UITextView!
+    var currentName: String = ""
+    var currentDesc: String = ""
+  //  var currentDate: NSDate!
     
     
     override func viewDidLoad() {
@@ -25,12 +32,14 @@ class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         // Handle the text field’s user input through delegate callbacks.
         itemname.delegate = self
         date.minimumDate = NSDate()
-        self.desc.layer.borderWidth = 2.0
+        self.desc.layer.borderWidth = 1.0
         self.desc.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.desc.delegate = self
         self.desc.text = "Item Description"
         self.desc.textColor = UIColor.lightGrayColor()
-        
+        self.itemname.text = self.currentName
+        self.desc.text = self.currentDesc
+     //   self.date.setDate(currentDate, animated: true)
        
 
     }

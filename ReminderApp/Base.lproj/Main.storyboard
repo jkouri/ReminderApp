@@ -72,11 +72,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableview" destination="5mP-qU-mMj" id="J9o-oo-3KT"/>
+                        <segue destination="ehr-u1-GKk" kind="show" identifier="EditReminder" action="showDetailViewController:sender:" id="Smv-mu-TNw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="esh-sM-Waa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="608" y="-128"/>
+            <point key="canvasLocation" x="542" y="-68"/>
         </scene>
         <!--Item Description-->
         <scene sceneID="R2k-sm-SmX">
@@ -149,4 +150,7 @@
             <point key="canvasLocation" x="1277" y="-60"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Smv-mu-TNw"/>
+    </inferredMetricsTieBreakers>
 </document>

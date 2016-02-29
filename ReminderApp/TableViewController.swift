@@ -14,6 +14,7 @@ class TableViewController: UITableViewController {
     
     @IBOutlet var tableview: UITableView!
     var currentReminder: ReminderItem? = nil
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +75,7 @@ class TableViewController: UITableViewController {
    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         self.currentReminder = DataStorage.sharedInstance.reminderlist[indexPath.row]
     if(currentReminder != nil) {
-        self.performSegueWithIdentifier("AddReminder,", sender: self)
+        self.performSegueWithIdentifier("EditReminder", sender: self)
     }
     
     }
@@ -112,11 +113,24 @@ class TableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        //destVC.dynamicType.init()
         if (currentReminder != nil){
+       // let date = currentReminder!.date
+    
+        
         let destVC = segue.destinationViewController as! AddReminderVC
-        destVC.itemname.text = currentReminder!.name
-        destVC.date.setDate(currentReminder!.date, animated: true)
-        destVC.desc.text = currentReminder!.desc
+       /* if let itemname = destVC.itemname{
+            itemname.text = currentReminder!.name
+        }*/
+        destVC.currentName = (currentReminder?.name)!
+        /*if let date = destVC.date {
+            date.setDate(currentReminder!.date, animated: true)
+            }*/
+     //   destVC.currentDate = currentReminder!.date
+       /* if let descrip = destVC.desc {
+            descrip.text = currentReminder!.desc
+            }*/
+         destVC.currentDesc = (currentReminder?.desc)!
         }
     }
 
