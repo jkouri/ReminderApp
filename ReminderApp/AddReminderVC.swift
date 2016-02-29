@@ -9,6 +9,8 @@
 import UIKit
 
 var reminderitem = [ReminderItem]()
+var now = NSDate()
+var  timer = NSTimer()
 
 //var currentDate: NSDate = currentDate
 //var currentDesc: String = ""
@@ -31,6 +33,7 @@ class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         super.viewDidLoad()
         // Handle the text field’s user input through delegate callbacks.
         itemname.delegate = self
+        
         date.minimumDate = NSDate()
         self.desc.layer.borderWidth = 1.0
         self.desc.layer.borderColor = UIColor.lightGrayColor().CGColor
@@ -44,6 +47,16 @@ class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     }
     // MARK: UITextViewDelegate
+    
+    /*
+    func countUp(){
+        for reminder in DataStorage.sharedInstance.reminderlist{
+            if Int64(NSDate().timeIntervalSinceDate(reminder.date)) == 0 || Int64(NSDate().timeIntervalSinceDate(reminder.date)) == 1 || Int64(NSDate().timeIntervalSinceDate(reminder.date)) == -1{
+                UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(reminder.alertController, animated: true, completion: nil)
+            }
+        }
+    }
+*/
     
     func textViewDidBeginEditing(textView: UITextView){
         if textView.textColor == UIColor.lightGrayColor(){
@@ -67,8 +80,39 @@ class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     }
    
     
-    func dismissAlert(alert: UIAlertAction){
+    func dismissAlert(alert: UIAlertAction, x: ReminderItem){
         self.dismissViewControllerAnimated(true, completion: nil)
+        var i = 0
+        for item in DataStorage.sharedInstance.reminderlist{
+            if(item == x){
+                DataStorage.sharedInstance.reminderlist.removeAtIndex(i)
+                break
+            }
+            i++
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("reload", object: nil)
+    }
+    
+    
+    func postponeAlert(alert: UIAlertAction, alertController: UIAlertController, x: ReminderItem){
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(3600.00 * Double(NSEC_PER_SEC))), dispatch_get_main_queue())
+                {
+                    UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(alertController, animated: true, completion: nil)
+                }
+        })
+    }
+    
+    
+    func delay(date: NSDate, alertController: UIAlertController, x: ReminderItem){
+        dispatch_async(dispatch_get_main_queue(), {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(Double(date.timeIntervalSinceDate(NSDate()))*Double(NSEC_PER_SEC))), dispatch_get_main_queue())
+                {
+                    UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(alertController, animated: true, completion: nil)
+                }
+        })
+        
     }
     
     
@@ -76,17 +120,24 @@ class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     @IBAction func addReminder(sender: AnyObject){
         let alertController = UIAlertController(title: "Reminder:", message: itemname.text!, preferredStyle: UIAlertControllerStyle.Alert)
         
-        let cancel = UIAlertAction(title: "Dismiss", style: .Cancel, handler: dismissAlert)
+        var d = date.date
+        let timeInterval = floor(d.timeIntervalSinceReferenceDate/60.0)*60.0
+        d = NSDate(timeIntervalSinceReferenceDate: timeInterval)
         
-        alertController.addAction(cancel)
-        let d = date.date
-        let x = ReminderItem(name: itemname.text!,date: d, desc: desc.text!)
+        let x = ReminderItem(name: itemname.text!,date: d, desc: desc.text!, alertController: alertController)
         DataStorage.sharedInstance.addReminder(x!)
         NSUserDefaults.standardUserDefaults().setObject(reminderitem, forKey: "list")
         itemname.text=""
         self.navigationController?.popToRootViewControllerAnimated(true)
+
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .Cancel, handler: {
+            action in self.dismissAlert(action, x: x!)
+        }))
+        alertController.addAction(UIAlertAction(title: "Postpone", style: .Default, handler: {
+            action in self.postponeAlert(action, alertController: alertController, x: x!)
+        }))
         
-        UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(alertController, animated: true, completion: nil)
+        delay(d, alertController: alertController, x: x!)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

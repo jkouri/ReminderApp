@@ -19,6 +19,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadTableData:", name: "reload", object: nil)
     }
 /*        if NSUserDefaults.standardUserDefaults().objectForKey("list") != nil {
             reminderlist = NSUserDefaults.standardUserDefaults().objectForKey("list") as! [ReminderItem] */
@@ -30,6 +31,9 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     
+    func reloadTableData(notification: NSNotification){
+        tableview.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

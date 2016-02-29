@@ -17,14 +17,16 @@ class ReminderItem: NSObject {
     var name: String
     var date: NSDate
     var desc: String
+    var alertController: UIAlertController
     //var alert: Bool
     
     // MARK: Initialization
     
-    init?(name: String, date: NSDate, desc: String) {
+    init?(name: String, date: NSDate, desc: String, alertController: UIAlertController) {
         self.name = name
         self.date = date
         self.desc = desc
+        self.alertController = alertController
     }
     //, date: NSDate, time: NSTimeInterval, alert:Bool) {
               //  self.date = date
