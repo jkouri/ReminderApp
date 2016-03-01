@@ -26,8 +26,11 @@ class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var desc: UITextView!
     var currentName: String = ""
     var currentDesc: String = ""
-  //  var currentDate: NSDate!
+    var currentDate: NSDate? = nil
+    var currentAlertC: UIAlertController? = nil
+
     
+    @IBOutlet weak var Save: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,15 +38,24 @@ class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         itemname.delegate = self
         
         date.minimumDate = NSDate()
+        let timeInterval = floor(date.minimumDate!.timeIntervalSinceReferenceDate/60.0)*60.0
+        date.minimumDate = NSDate(timeIntervalSinceReferenceDate: timeInterval)
         self.desc.layer.borderWidth = 1.0
         self.desc.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.desc.delegate = self
         self.desc.text = "Item Description"
         self.desc.textColor = UIColor.lightGrayColor()
+        
+        if(self.currentName != "" || self.currentDate != nil) {
         self.itemname.text = self.currentName
         self.desc.text = self.currentDesc
+        self.date.setDate(currentDate!, animated: true)
+            
+        
+        }
      //   self.date.setDate(currentDate, animated: true)
        
+
 
     }
     // MARK: UITextViewDelegate
@@ -57,6 +69,7 @@ class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         }
     }
 */
+    
     
     func textViewDidBeginEditing(textView: UITextView){
         if textView.textColor == UIColor.lightGrayColor(){
@@ -118,6 +131,14 @@ class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     //MARK: Actions
     @IBAction func addReminder(sender: AnyObject){
+        if(self.currentName != "" || self.currentDate != nil) {
+        if let x = ReminderItem(name: self.currentName, date: currentDate!, desc: self.currentDesc, alertController: currentAlertC!) {
+            if let i = DataStorage.sharedInstance.reminderlist.indexOf(x) {
+                DataStorage.sharedInstance.reminderlist.removeAtIndex(i)
+                }
+            }
+        }
+        
         let alertController = UIAlertController(title: "Reminder:", message: itemname.text!, preferredStyle: UIAlertControllerStyle.Alert)
         
         var d = date.date
@@ -139,6 +160,7 @@ class AddReminderVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         
         delay(d, alertController: alertController, x: x!)
     }
+   
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)

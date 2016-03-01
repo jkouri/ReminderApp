@@ -28,6 +28,14 @@ class ReminderItem: NSObject {
         self.desc = desc
         self.alertController = alertController
     }
+    
+   override func isEqual(object: AnyObject?) -> Bool {
+        if let other = object as? ReminderItem{
+            return (self.name == other.name && self.date.compare(other.date) == NSComparisonResult.OrderedSame)
+        }else{
+            return false
+        }
+    }
     //, date: NSDate, time: NSTimeInterval, alert:Bool) {
               //  self.date = date
       //  self.time = time

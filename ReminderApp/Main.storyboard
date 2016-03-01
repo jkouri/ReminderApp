@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Ah-9j-68J">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2Ah-9j-68J">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Nav Controller-->
         <scene sceneID="jgV-aV-pz4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Ah-9j-68J" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Ah-9j-68J" customClass="NavController" customModule="ReminderApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qhr-RW-IrA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -17,12 +17,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="5Jn-bY-Uzz" kind="relationship" relationship="rootViewController" id="Ueh-WL-jdq"/>
+                        <segue destination="5Jn-bY-Uzz" kind="relationship" relationship="rootViewController" id="gMF-Wn-OTG"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X8q-Q8-MET" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-103" y="-128"/>
+            <point key="canvasLocation" x="-247" y="-50"/>
         </scene>
         <!--Reminders-->
         <scene sceneID="DLt-3y-sMS">
@@ -37,18 +37,18 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nnX-69-Ii9" id="3CR-sL-Yxv">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cPQ-gs-nfp">
-                                            <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gsn-2e-lLF">
-                                            <rect key="frame" x="15" y="25" width="31" height="14"/>
+                                            <rect key="frame" x="15" y="25.5" width="30.5" height="13.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,7 +72,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableview" destination="5mP-qU-mMj" id="J9o-oo-3KT"/>
-                        <segue destination="ehr-u1-GKk" kind="show" identifier="EditReminder" action="showDetailViewController:sender:" id="Smv-mu-TNw"/>
+                        <segue destination="ehr-u1-GKk" kind="show" identifier="EditReminder" id="HoF-vv-NVA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="esh-sM-Waa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -99,12 +99,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Item Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nsO-el-Wqw">
-                                <rect key="frame" x="25" y="329" width="364" height="355"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="EmQ-AP-lgC">
                                 <rect key="frame" x="47" y="140" width="320" height="181"/>
                                 <constraints>
@@ -114,10 +108,18 @@
                                     <!--2016-02-22 02:47:33 +0000-->
                                 </date>
                             </datePicker>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Item Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nsO-el-Wqw">
+                                <rect key="frame" x="25" y="329" width="362" height="309"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="309" id="Knu-lp-XZr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xAs-yQ-Swb" firstAttribute="top" secondItem="nsO-el-Wqw" secondAttribute="bottom" constant="8" id="4hz-hU-TBr"/>
                             <constraint firstItem="EmQ-AP-lgC" firstAttribute="top" secondItem="cfc-I6-RXO" secondAttribute="bottom" constant="8" id="7Pj-cs-fEm"/>
                             <constraint firstItem="cfc-I6-RXO" firstAttribute="top" secondItem="H6m-mQ-5YL" secondAttribute="bottom" constant="38" id="E0h-f6-st5"/>
                             <constraint firstItem="nsO-el-Wqw" firstAttribute="top" secondItem="EmQ-AP-lgC" secondAttribute="bottom" constant="8" id="KFf-Ly-xxy"/>
@@ -131,7 +133,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Item Description" id="VNC-qy-o41">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="BEc-KL-6z2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="BEc-KL-6z2">
                             <connections>
                                 <action selector="addReminder:" destination="ehr-u1-GKk" id="q5h-MV-LqI"/>
                             </connections>
@@ -147,10 +149,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6y-DC-0q9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1277" y="-60"/>
+            <point key="canvasLocation" x="1165" y="-60"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Smv-mu-TNw"/>
+        <segue reference="HoF-vv-NVA"/>
     </inferredMetricsTieBreakers>
 </document>

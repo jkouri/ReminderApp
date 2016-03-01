@@ -9,7 +9,7 @@
 import UIKit
 
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController  {
 
     
     @IBOutlet var tableview: UITableView!
@@ -80,6 +80,7 @@ class TableViewController: UITableViewController {
         self.currentReminder = DataStorage.sharedInstance.reminderlist[indexPath.row]
     if(currentReminder != nil) {
         self.performSegueWithIdentifier("EditReminder", sender: self)
+        //self.parentViewController?.performSegueWithIdentifier("EditReminder", sender: self)
     }
     
     }
@@ -118,25 +119,17 @@ class TableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         //destVC.dynamicType.init()
-        if (currentReminder != nil){
-       // let date = currentReminder!.date
-    
-        
-        let destVC = segue.destinationViewController as! AddReminderVC
-       /* if let itemname = destVC.itemname{
-            itemname.text = currentReminder!.name
-        }*/
-        destVC.currentName = (currentReminder?.name)!
-        /*if let date = destVC.date {
-            date.setDate(currentReminder!.date, animated: true)
-            }*/
-     //   destVC.currentDate = currentReminder!.date
-       /* if let descrip = destVC.desc {
-            descrip.text = currentReminder!.desc
-            }*/
-         destVC.currentDesc = (currentReminder?.desc)!
+        if (currentReminder != nil && segue.identifier == "EditReminder"){
+            let destVC = segue.destinationViewController as! AddReminderVC
+            
+            destVC.currentName = (currentReminder?.name)!
+            destVC.currentDate = currentReminder!.date
+            destVC.currentDesc = (currentReminder?.desc)!
+            destVC.currentAlertC = (currentReminder?.alertController)
         }
     }
+    
+
 
 
 }
